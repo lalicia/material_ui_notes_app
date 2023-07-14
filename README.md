@@ -39,6 +39,8 @@ A core layout can be passed to the main route wrapping the others:
 <Route path="/" element={<Layout />}>
 ```
 
+&nbsp;
+
 ### Runtime errors - "./"
 
 I'm not 100% what this was, but I changed the imports in `app.js` for the pages to:
@@ -50,6 +52,8 @@ import Create from "../src/pages/Create";
 
 This seemed to resolve the issue.
 
+&nbsp;
+
 ### MUI 4 vs 5
 
 I realised almost at the end of the project that I was using MUI v4 rather than MUI v5, which was from following the import instruction given on the tutorial. Now this is fine, but I had wanted specifically to be working with MUI 5 as I have a future need to work with that library (or even MUI 6).
@@ -60,9 +64,13 @@ There were some breaking changes in components (such as `TextField`) and I've tr
 
 After doing all that and checking everything worked (and fixing what didn't) I then did `npm uninstall @material-ui/core` and prayed.
 
+&nbsp;
+
 ### MUI Icons
 
 Once I installed and started to use icons I hit another set of runtime errors - to do with `@emotion` not being found. I ended up getting around these by following the instructions on this [stackoverflow](https://stackoverflow.com/questions/65486256/module-not-found-cant-resolve-emotion-react) and `npm i` `@emotion/react`, `@emotion/styled`, and `@emotion/utils`. I started strongly to lean toward restarting the tutorial with a fresh create-react-app...
+
+&nbsp;
 
 ### makeStyles
 
@@ -111,6 +119,8 @@ NB. some `makeStyles` changes don't seem to take effect in MUI 5, it seems reall
   <Toolbar sx={{ bgcolor: "#fefefe", color: "text.primary" }}>
 ```
 
+&nbsp;
+
 ### createMuiTheme and ThemeProvider
 
 `createMuiTheme` is depracated - you need to use `createTheme`.
@@ -127,6 +137,8 @@ function App() {
 }
 ```
 
+&nbsp;
+
 ### json-server
 
 A nice way of persisting data without a backend or local storage, suitable for prototyping and mocking.
@@ -137,9 +149,13 @@ Of note, if you're against installing things globally like I am, then when you t
 
 NB. if you try to run the app without this being up and running it will fail to load and your app will be unreachable.
 
+&nbsp;
+
 ### useHistory
 
 React Router v6 replaces `useHistory` with `useNavigate`. It's almost identical to implement, and [this page](https://reactrouter.com/en/main/upgrading/v5#use-usenavigate-instead-of-usehistory) in the docs shows you an example.
+
+&nbsp;
 
 ### Layout - children arr out Outlet is in
 
@@ -159,17 +175,25 @@ const router = createBrowserRouter(
 
 You don't use `children`, instead React Router 6 has an import called `Outlet` - and you use this like a component within your Layout to tell it where the page that's been routed to will render. This [link](https://www.youtube.com/watch?v=5s57C7leXc4&list=PL4cUxeGkcC9iVKmtNuCeIswnQ97in2GGf&index=4) has a tutorial with a demonstration.
 
+&nbsp;
+
 ### classes={{}}
 
 You can pass this as a prop to a MUI component to override the CSS styles being given to it by MUI.
+
+&nbsp;
 
 ### date-fns
 
 This is used to format the date - I looked into it and it's a well used npm package, so nice to know about.
 
+&nbsp;
+
 ### Importing avatar images
 
 This worked differently than I'm used to - I would normally import an image at the top and then use the dynamic reference. I also tried to do the path `../../etc` and that didn't work. In the tutorial it shows you how to do this and honestly I'm not sure why this works but it does. Worth flagging just in case I/someone runs into this issue and this prompts a solution.
+
+&nbsp;
 
 ### MUI 5 - Margins in TextField
 
@@ -189,9 +213,13 @@ const useStyles = makeStyles({
 
 I don't know why this is and didn't see it in the documentation when I was trying to find a solution, but I thankfully found [this stackoverflow post](https://stackoverflow.com/questions/69557763/margin-not-working-in-textfield-using-mui-makestyles) addressing the problem.
 
+&nbsp;
+
 ### MUI 5 - Radio colors
 
 The colors for the `Radio` components now need to be stated explicitly per component use - you can't put it in the `RadioGroup` (I tried). Documentation covers it [here](https://mui.com/material-ui/migration/v5-component-changes/).
+
+&nbsp;
 
 ### MUI 5 - Avatar colors
 
@@ -200,6 +228,8 @@ This had to be done completely differently from the tutorial, as passing the col
 Interestingly the colors have to be put in with values - if you leave the value out then it doesn't work. So it needs to be `work: red[500]` not `work: red`.
 
 Again, I didn't see an explanation in the official documentation around this when looking through breaking changes around components and styling.
+
+&nbsp;
 
 ### MUI 5 - Form control displaying as row
 
@@ -213,6 +243,8 @@ I got around this by passing an `sx` prop like so:
   sx={{ display: "flex", direction: "column" }}
 >
 ```
+
+&nbsp;
 
 ### MUI 5 - ListItem vs ListItemButton, and the active class
 
@@ -230,6 +262,8 @@ Switching that in was seamless, but still didn't make the `active` class color w
   }}
 >
 ```
+
+&nbsp;
 
 ### MUI 5 - Masonry
 
